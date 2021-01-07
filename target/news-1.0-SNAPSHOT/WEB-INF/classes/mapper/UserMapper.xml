@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="cn.wmyskxz.dao.UserDao">
+
+    <!--查询所有新闻类型-->
+    <select id="findAllcategory" resultType="cn.wmyskxz.entity.Category">
+      SELECT * FROM category;
+    </select>
+    
+    <!--查询所有新闻-->
+    <select id="findAllNews" resultType="cn.wmyskxz.entity.News">
+      SELECT * FROM news;
+    </select>
+
+    <!--根据新闻类型查询新闻-->
+    <select id="allNewsByCid" resultType="cn.wmyskxz.entity.News" parameterType="int">
+      SELECT * FROM  news WHERE cid=#{cid};
+    </select>
+
+    <!--根据新闻id查询新闻-->
+    <select id="findNewsById" resultType="cn.wmyskxz.entity.News" parameterType="int">
+        SELECT * FROM news WHERE id=#{id};
+    </select>
+
+    <!--根据标题模糊搜索-->
+    <select id="findNewsByTitle" resultType="cn.wmyskxz.entity.News" parameterType="String">
+        SELECT * FROM news WHERE title LIKE '%${title}%';
+    </select>
+
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="cn.wmyskxz.dao.AdminDao">
+
+    <!--根据用户名、密码查询用户-->
+    <select id="findUser" resultType="cn.wmyskxz.entity.User" parameterType="cn.wmyskxz.entity.User">
+        SELECT * FROM user WHERE username=#{user.username} AND password=#{user.password}
+    </select>
+
+    <!--根据id删除新闻类型-->
+    <delete id="categoryDelete" parameterType="int">
+        DELETE FROM category WHERE id=#{id}
+    </delete>
+
+    <!--根据新闻类型id查询-->
+    <select id="findCategoryById" resultType="cn.wmyskxz.entity.Category">
+        SELECT * FROM category WHERE id=#{id}
+    </select>
+
+    <!--根据id修改新闻类型-->
+    <update id="categoryUpdate" parameterType="cn.wmyskxz.entity.Category">
+        UPDATE category SET categoryName=#{category.categoryName} WHERE id=#{category.id}
+    </update>
+
+    <!--发布新闻类型-->
+    <insert id="categoryAdd" parameterType="cn.wmyskxz.entity.Category">
+        INSERT INTO category (categoryName) VALUES (#{category.categoryName})
+    </insert>
+
+    <!--根据id删除新闻-->
+    <delete id="newsDelete" parameterType="int">
+        DELETE FROM news WHERE id=#{id}
+    </delete>
+
+    <!--更新新闻-->
+    <update id="newsUpdate" parameterType="cn.wmyskxz.entity.News">
+        UPDATE news SET title=#{news.title},source=#{news.source},content=#{news.content},cid=#{news.cid} WHERE id=#{news.id}
+    </update>
+
+    <!--发布新闻-->
+    <insert id="newsAdd" parameterType="cn.wmyskxz.entity.News">
+        INSERT INTO news (title,source,content,issueTime,cid) VALUES (#{news.title},#{news.source},#{news.content},#{news.issueTime},#{news.cid})
+    </insert>
+
+</mapper>
